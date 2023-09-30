@@ -6,6 +6,14 @@ class Human(Player):
         self.name = name
 
     def move(self, state: Board) -> int:
+        
         valid_moves = state.valid_moves()
+        
         # Pick from among the valid moves
+        print(f"Valid choices are: {valid_moves}")
+        choice = input()
+        # TODO: Sanitize user input more cleanly
+        # if int(choice) in valid_moves:
         return valid_moves[0]
+
+        

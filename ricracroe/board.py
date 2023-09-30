@@ -17,6 +17,25 @@ class Board:
     def __init__(self):
         self.board = [[None for _ in range(3)] for _ in range(3)]
 
+    def render_board(self, placeholder = False) -> None:
+
+        chars = []
+
+        for m in range(9):
+            r, c = self._int_to_rc(m)
+            open_char = m if placeholder else ' '
+            chars.append(self.board[r][c] if self.board[r][c] else open_char)
+        
+        view =  "┌───┬───┬───┐\n"
+        view +=f"│ {chars[0]} │ {chars[1]} │ {chars[2]} │\n"
+        view += "├───┼───┼───┤\n"  
+        view +=f"│ {chars[3]} │ {chars[4]} │ {chars[5]} │\n"
+        view += "├───┼───┼───┤\n"  
+        view +=f"│ {chars[6]} │ {chars[7]} │ {chars[8]} │\n"
+        view += "└───┴───┴───┘\n"
+
+        print(view)
+
     """
     Returns either:
       X - When X has won the game
@@ -35,7 +54,7 @@ class Board:
                 return 'O'
           
         # If no further moves and no winner - it is a draw. 
-        if self.valid_moves == []:
+        if self.valid_moves() == []:
            return '='
         
         # Otherwise, the show must go on!
@@ -59,3 +78,4 @@ class Board:
             print("Trying to make an invalid move!")
         else:
             self.board[row][col] = char
+
