@@ -27,7 +27,7 @@ class Board:
     def is_terminal(self):
        
         # Check for a clear winner
-        for candidate in winners:
+        for candidate in self.winners:
             line = [self.board[c[0]][c[1]] for c in candidate]
             if line == ['X', 'X', 'X']:
                 return 'X'
