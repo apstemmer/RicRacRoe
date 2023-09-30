@@ -15,4 +15,4 @@ class Game:
                 self.curr_player = self.p2
             else:
                 self.p2.move(self.board)
-                self.curr_player = p1
+                self.curr_player = self.p1
