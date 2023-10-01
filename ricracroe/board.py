@@ -23,16 +23,20 @@ class Board:
 
         for m in range(9):
             r, c = self._int_to_rc(m)
-            open_char = m if placeholder else ' '
-            chars.append(self.board[r][c] if self.board[r][c] else open_char)
+            curr = f"{m} " if placeholder else "  "
+            if self.board[r][c] == 'X':
+                curr = '❎'
+            elif self.board[r][c] == 'O':
+                curr = '⭕'
+            chars.append(curr)
         
-        view =  "┌───┬───┬───┐\n"
+        view =  "┌────┬────┬────┐\n"
         view +=f"│ {chars[0]} │ {chars[1]} │ {chars[2]} │\n"
-        view += "├───┼───┼───┤\n"  
+        view += "├────┼────┼────┤\n"  
         view +=f"│ {chars[3]} │ {chars[4]} │ {chars[5]} │\n"
-        view += "├───┼───┼───┤\n"  
+        view += "├────┼────┼────┤\n"  
         view +=f"│ {chars[6]} │ {chars[7]} │ {chars[8]} │\n"
-        view += "└───┴───┴───┘\n"
+        view += "└────┴────┴────┘\n"
 
         print(view)
 

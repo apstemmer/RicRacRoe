@@ -7,13 +7,12 @@ class Human(Player):
 
     def move(self, state: Board) -> int:
         
-        valid_moves = state.valid_moves()
-        
+        valid_moves = state.valid_moves()        
         # Pick from among the valid moves
-        print(f"Valid choices are: {valid_moves}")
-        choice = input()
-        # TODO: Sanitize user input more cleanly
-        # if int(choice) in valid_moves:
-        return valid_moves[0]
-
+        while True:
+            state.render_board(placeholder=True)
+            print(f"Valid choices are: {valid_moves}")
+            choice = input("> ")
+            if choice.isdigit() and int(choice) in valid_moves:
+                return int(choice)
         

@@ -12,7 +12,7 @@ class Game:
         print("### Beginning a game of RicRacRoe ###")
         while not self.board.is_terminal():
             print(f"Turn: {self.curr_player.name}")
-            self.board.render_board()
+            
             if self.curr_player == self.p1:
                 move = self.p1.move(self.board)
                 self.board.place(move, 'X')
