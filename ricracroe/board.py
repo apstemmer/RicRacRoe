@@ -14,8 +14,9 @@ class Board:
         [(0,2), (1,2), (2,2)]
     ] 
 
-    def __init__(self):
+    def __init__(self, start_turn='X'):
         self.board = [[None for _ in range(3)] for _ in range(3)]
+        self.turn = start_turn
 
     def render_board(self, placeholder = False) -> None:
 
@@ -25,9 +26,9 @@ class Board:
             r, c = self._int_to_rc(m)
             curr = f"{m} " if placeholder else "  "
             if self.board[r][c] == 'X':
-                curr = '❎'
+                curr = '👻'
             elif self.board[r][c] == 'O':
-                curr = '⭕'
+                curr = '🎃'
             chars.append(curr)
         
         view =  "┌────┬────┬────┐\n"
@@ -75,11 +76,12 @@ class Board:
     def _int_to_rc(self, index: int) -> tuple[int, int]:
         return (index // 3, index % 3) 
 
-    def place(self, move: int, char: str) -> None:
+    def place(self, move: int) -> None:
         row, col = self._int_to_rc(move)
         if move not in self.valid_moves():
             # Making an invalid move means you lose your turn ;)
             print("Trying to make an invalid move!")
         else:
-            self.board[row][col] = char
+            self.board[row][col] = self.turn
+            self.turn = 'O' if self.turn == 'X' else 'X'
 
