@@ -18,6 +18,12 @@ class Board:
         self.board = [[None for _ in range(3)] for _ in range(3)]
         self.turn = start_turn
 
+    def copy_of(self):
+        board = Board()
+        board.turn = self.turn
+        board.board = [[p for p in r]for r in self.board]
+        return board
+
     def render_board(self, placeholder = False) -> None:
 
         chars = []
